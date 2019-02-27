@@ -25,23 +25,18 @@ class HomeController extends Controller
             },
             "process"
         ])
-            ->where([
-                'emp_id' => Auth::id(),
-                'pid' => 0
-            ])
+            ->where('emp_id', Auth::id())
+            ->where('pid', 0)
             ->orderBy('id', 'DESC')
             ->get();
-
         //我的待办
         $procs = Proc::with([
             "emp",
             "entry" => function ($query) {
                 $query->with("emp");
             }])
-            ->where([
-                'emp_id' => Auth::id(),
-                'status' => 0
-            ])
+            ->where('emp_id', Auth::id())
+            ->where('status', 0)
             ->orderBy("is_read", "ASC")
             ->orderBy("status", "ASC")
             ->orderBy("id", "DESC")
@@ -55,15 +50,18 @@ class HomeController extends Controller
             ->orderBy('id', 'ASC')
             ->get();
 
-        $handle_procs = Proc::with(["emp", "entry" => function ($query) {
+        $handle_procs = Proc::with([
+            "emp",
+            "entry" => function ($query) {
             $query->with("emp");
         }])
-            ->where(['emp_id' => Auth::id()])
+            ->where('emp_id', Auth::id())
             ->where('status', '!=', 0)
             ->orderBy('entry_id', 'DESC')
             ->orderBy("id", "ASC")
-            ->groupBy('entry_id')
-            ->get();
+            ->get()
+            ->groupBy('entry_id');
+
         return view('home')->with(compact("entries", "procs", "flows", "handle_procs"));
     }
 }
