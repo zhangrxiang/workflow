@@ -13,6 +13,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="/vendor/toastr/build/toastr.min.js" type="text/javascript"></script>
+    <script src="/vendor/layer/src/layer.js" type="text/javascript"></script>
     <!-- Scripts -->
     <script>
         window.Laravel = {
@@ -43,11 +44,13 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
-                <a class="navbar-brand" href="{{route('emp.index')}}">员工管理</a>
-                <a class="navbar-brand" href="{{route('dept.index')}}">部门管理</a>
-                <a class="navbar-brand" href="{{route('flow.index')}}">流程管理</a>
-                <a class="navbar-brand" href="{{route('template.index')}}">模板管理</a>
+                @if (!Auth::guest())
+                    <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+                    <a class="navbar-brand" href="{{route('emp.index')}}">员工管理</a>
+                    <a class="navbar-brand" href="{{route('dept.index')}}">部门管理</a>
+                    <a class="navbar-brand" href="{{route('flow.index')}}">流程管理</a>
+                    <a class="navbar-brand" href="{{route('template.index')}}">模板管理</a>
+                @endif
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">

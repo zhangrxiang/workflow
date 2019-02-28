@@ -40,7 +40,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if($entries->count()>0){{dump($entries)}}
+                        @if($entries->count()>0)
                             @foreach($entries as $v)
                                 <tr>
                                     <th scope="row">{{$v->title}}</th>
@@ -115,7 +115,7 @@
                                 <td>
                                 @if($v->status==0)
                                     <!-- 进行中. <a href="/pass/{{$v->id}}">通过</a> <a href="/unpass/{{$v->id}}">不通过</a> -->
-                                        <button onclick="superDialog('/proc/{{$v->id}}','','');"
+                                        <button onclick="showLayer('/proc/{{$v->id}}','','');"
                                                 class="btn btn-xs btn-warning entry-detail">批复
                                         </button>
                                     @elseif($v->status==9)
@@ -219,6 +219,21 @@
                 var selectValue = window.open(URL, 'newwindow', 'height=' + dialogHeight + ',width=' + dialogWidth + ',top=' + loc_y + ',left=' + loc_x + ',toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
 
             }
+        }
+
+        /**
+         * showLayer
+         * @param URL
+         */
+        function showLayer(URL) {
+            layer.open({
+                type: 2,
+                title: '',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['80%', '80%'],
+                content: URL
+            });
         }
     </script>
 @endsection
