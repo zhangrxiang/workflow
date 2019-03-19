@@ -27,7 +27,7 @@
 
           <div class="form-group">
             <label for="exampleInputPassword1">流程分类</label>
-            <select class="form-control" name="template_id">
+            <select class="form-control" name="type_id">
               @foreach($flow_types as $v)
               <option value="{{$v->id}}">{{$v->type_name}}</option>
               @endforeach
