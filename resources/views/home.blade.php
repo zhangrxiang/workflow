@@ -114,10 +114,11 @@
                                 <td>{{$v->flow->flow_name}}</td>
                                 <td>
                                 @if($v->status==0)
-                                    <!-- 进行中. <a href="/pass/{{$v->id}}">通过</a> <a href="/unpass/{{$v->id}}">不通过</a> -->
-                                        <button onclick="showLayer('/proc/{{$v->id}}','','');"
-                                                class="btn btn-xs btn-warning entry-detail">批复
-                                        </button>
+                                    {{--<!-- 进行中. <a href="/pass/{{$v->id}}">通过</a> <a href="/unpass/{{$v->id}}">不通过</a> -->--}}
+                                        <button onclick="superDialog('/proc/{{$v->id}}','','');" class="btn btn-xs btn-warning entry-detail">批复</button>
+                                        {{--<button onclick="showLayer('/proc/{{$v->id}}','','');"--}}
+                                                {{--class="btn btn-xs btn-warning entry-detail">批复--}}
+                                        {{--</button>--}}
                                     @elseif($v->status==9)
                                         已处理(通过)
                                     @elseif($v->status==-1)
